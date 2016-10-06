@@ -48,3 +48,5 @@ jspm_packages
 *.tgz
 
 .idea
+
+api_key.js
