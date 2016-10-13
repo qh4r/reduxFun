@@ -1,6 +1,6 @@
 import React from 'react';
 
-const VideoListItem = ({video}) => {
+const VideoListItem = ({video, selectVideoCallback}) => {
     // w parametrze ({video})
     // jest wornoznaczne z
     // const video = props.video (z props podanym jako argument)
@@ -9,7 +9,7 @@ const VideoListItem = ({video}) => {
     console.log(video);
     const videoUrl = video.snippet.thumbnails.default.url;
     const videoTitle = video.snippet.title;
-    return (<li className="list-group-item">
+    return (<li className="list-group-item" onClick={() => selectVideoCallback(video)} >
         <div className="video-list media">
             <div className="media-left">
                 <img src={videoUrl} alt={videoTitle} className="media-object"/>

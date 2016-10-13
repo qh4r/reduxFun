@@ -15,22 +15,24 @@ class SearchBar extends Component {
 
     // jesli nie chcemy uzywac binda to musimy psiac inline
 
+    //rownoznaczkik z ponizszym
+    //<label for="bind">BIND: </label>
+    //<input label="bind" value={this.state.term}
+    //onChange={this.onInputChanged.bind(this)}/>
+    //<br />
+
     render() {
         return (
             <div>
-                <label for="bind">BIND: </label>
-                <input label="bind" value={this.state.term}
-                       onChange={this.onInputChanged.bind(this)}/>
-                <br />
-                <label for="lambda">LAMBDA: </label>
-                <input name="lambda" value={this.state.term}
-                             onChange={x => {
+                <p>
+                    <input name="search" value={this.state.term}
+                           onChange={x => {
                  this.setState({
                         term: x.target.value
                     });
                 }}/>
 
-                <p>Wartosc: {this.state.term}</p>
+                    &nbsp; Wartosc: {this.state.term}</p>
             </div>
         );
     }

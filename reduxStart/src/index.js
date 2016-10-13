@@ -6,26 +6,33 @@ import {API_KEY} from './api_key'
 
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list.jsx';
+import VideoDetails from './components/video_details';
 
 class App extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {videos: []};
+        this.state = {videos: [], selectedVideo: null};
 
         YTSearch({key: API_KEY, term: 'wakeboard'}, videos => {
             //this.setState({videos: videos}); // ES6 POZWALA NA INNA SKLADNIE
-            this.setState({videos}); // jesli nazwy sie pokrywaja mozna tego uzyc
+            this.setState({videos, selectedVideo: videos[0]}); // jesli nazwy sie pokrywaja mozna tego uzyc
             // rownowazne z {videos: videos}
         });
     }
 
     render() {
         return <div>
-            Hi!
             <SearchBar />
-            <VideoList videos={this.state.videos} />
+            <VideoDetails video={this.state.selectedVideo}/>
+            <VideoList selectVideoCallback={this.selectVideo.bind(this)} videos={this.state.videos}/>
         </div>;
+    }
+
+    // mozna by w binding wpisac
+    // selectVideoCallback={selectedVideo => this.setState({selectedVideo})}
+    selectVideo(selectedVideo) {
+        this.setState({selectedVideo})
     }
 }
 
