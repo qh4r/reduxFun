@@ -13,17 +13,11 @@ class App extends Component {
         super(props)
 
         this.state = {videos: [], selectedVideo: null};
-
-        YTSearch({key: API_KEY, term: 'wakeboard'}, videos => {
-            //this.setState({videos: videos}); // ES6 POZWALA NA INNA SKLADNIE
-            this.setState({videos, selectedVideo: videos[0]}); // jesli nazwy sie pokrywaja mozna tego uzyc
-            // rownowazne z {videos: videos}
-        });
     }
 
     render() {
         return <div>
-            <SearchBar />
+            <SearchBar searchMethod={this.searchForInput.bind(this)}/>
             <VideoDetails video={this.state.selectedVideo}/>
             <VideoList selectVideoCallback={this.selectVideo.bind(this)} videos={this.state.videos}/>
         </div>;
@@ -33,6 +27,14 @@ class App extends Component {
     // selectVideoCallback={selectedVideo => this.setState({selectedVideo})}
     selectVideo(selectedVideo) {
         this.setState({selectedVideo})
+    }
+
+    searchForInput(text){
+        YTSearch({key: API_KEY, term: text}, videos => {
+            //this.setState({videos: videos}); // ES6 POZWALA NA INNA SKLADNIE
+            this.setState({videos, selectedVideo: videos[0]}); // jesli nazwy sie pokrywaja mozna tego uzyc
+            // rownowazne z {videos: videos}
+        });
     }
 }
 
