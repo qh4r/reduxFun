@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import YTSearch from 'youtube-api-search'
+import YTSearch from 'youtube-api-search';
 
-import {API_KEY} from './api_key'
+import {API_KEY} from './api_key';
 
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list.jsx';
