@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {fetchWeather} from '../actions/index';
 
-export default class SearchBar extends Component {
+export class SearchBar extends Component {
     constructor(props) {
         super(props);
-
+        console.log(props);
         this.state = {term: ''};
     }
 
@@ -28,5 +31,23 @@ export default class SearchBar extends Component {
 
     onFormSubmit(e) {
         e.preventDefault();
+        this.props.fetchWeather(this.state.term);
+        this.setState({
+            term: ''
+        });
     }
 }
+
+function mapStateToProps(state){
+    return {
+        forecast: state.forecast
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({ fetchWeather }, dispatch);
+}
+
+// null oznacza ze kontener nie bedziemial stanu
+// w innym wypadku bylo by w jego miejsce mapStateToProps (zwracajace stan)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
