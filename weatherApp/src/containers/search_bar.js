@@ -38,7 +38,9 @@ export class SearchBar extends Component {
     }
 }
 
+//nie uzywane gdy null
 function mapStateToProps(state){
+    console.log('state ', state);
     return {
         forecast: state.forecast
     }
@@ -50,4 +52,4 @@ function mapDispatchToProps(dispatch){
 
 // null oznacza ze kontener nie bedziemial stanu
 // w innym wypadku bylo by w jego miejsce mapStateToProps (zwracajace stan)
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
+export default connect(null, mapDispatchToProps)(SearchBar)
