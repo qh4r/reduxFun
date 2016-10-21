@@ -1,0 +1,7 @@
+thead>tr>* {
+    text-align: center;
+}
+
+.table tr>td {
+    vertical-align: bottom;
+}

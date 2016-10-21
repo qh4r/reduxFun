@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import GraphElement from '../components/graph_element';
 
 class ForecastList extends Component {
     constructor(props) {
@@ -25,11 +26,21 @@ class ForecastList extends Component {
     }
 
     renderForecast(cityData) {
-        const city = cityData.city;
         console.log(cityData);
+        const city = cityData.city;
+        const [temp, pressure, humidity] = cityData.list.reduce(([t,p,h], w) => {
+                return [[w.main.temp, ...t],
+                    [w.main.pressure, ...p],
+                    [w.main.humidity, ...h]];
+            },
+            [[], [], []]);
+
         return (
             <tr key={city.id}>
-                <td>{city.name}</td>
+                <td style={{verticalAlign: 'middle'}}>{city.name}</td>
+                <GraphElement data={temp} color={'#aa2a2a'} />
+                <GraphElement data={pressure} color={'#7a1aff'} />
+                <GraphElement data={humidity} color={'#87b7ff'} />
             </tr>
         )
     }
