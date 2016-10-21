@@ -39,15 +39,15 @@ export class SearchBar extends Component {
 }
 
 //nie uzywane gdy null
-function mapStateToProps(state){
+function mapStateToProps(state) {
     console.log('state ', state);
     return {
         forecast: state.forecast
     }
 }
 
-function mapDispatchToProps(dispatch){
-    return bindActionCreators({ fetchWeather }, dispatch);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({fetchWeather}, dispatch);
 }
 
 // null oznacza ze kontener nie bedziemial stanu
