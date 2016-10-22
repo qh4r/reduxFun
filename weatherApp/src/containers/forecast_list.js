@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import GraphElement from '../components/graph_element';
+import MapElement from '../components/map_element';
 
 class ForecastList extends Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class ForecastList extends Component {
 
     render() {
         return (
-            <table className="table table-hover">
+            <table className="table">
                 <thead>
                 <tr>
                     <th>Miasto</th>
@@ -29,18 +30,20 @@ class ForecastList extends Component {
         console.log(cityData);
         const city = cityData.city;
         const [temp, pressure, humidity] = cityData.list.reduce(([t,p,h], w) => {
-                return [[w.main.temp, ...t],
+                return [[w.main.temp - 273.15, ...t],
                     [w.main.pressure, ...p],
                     [w.main.humidity, ...h]];
             },
             [[], [], []]);
+        const {lat, lon} = city.coord;
 
+        //<td style={{verticalAlign: 'middle'}}>{city.name}</td>
         return (
             <tr key={city.id}>
-                <td style={{verticalAlign: 'middle'}}>{city.name}</td>
-                <GraphElement data={temp} color={'#aa2a2a'} />
-                <GraphElement data={pressure} color={'#7a1aff'} />
-                <GraphElement data={humidity} color={'#87b7ff'} />
+                <MapElement lat={lat} lng={lon} />
+                <GraphElement data={temp} unit="°C" color={'#aa2a2a'} />
+                <GraphElement data={pressure} unit="hPa" color={'#7a1aff'} />
+                <GraphElement data={humidity} unit="%" color={'#87b7ff'} />
             </tr>
         )
     }

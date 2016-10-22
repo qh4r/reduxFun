@@ -1,7 +1,15 @@
+.input-group {
+    margin: 20px 0;
+}
 thead>tr>* {
     text-align: center;
 }
 
 .table tr>td {
     vertical-align: bottom;
+}
+
+td:first-of-type {
+    height: 200px;
+    width: 200px;
 }
