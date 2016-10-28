@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchPosts} from '../actions/index';
 import { bindActionCreators } from 'redux';
+import {Link} from 'react-router';
 
 class PostsIndex extends Component {
 
@@ -22,7 +23,15 @@ class PostsIndex extends Component {
     render() {
         console.log(this.props.posts);
         return (
-            <div>list</div>
+            <div>
+
+                <div className="text-xs-right">
+                    <Link className="btn btn-primary" to="/new">
+                        Nowy Post
+                    </Link>
+                </div>
+                <div>list</div>
+            </div>
         )
     }
 }
