@@ -1,5 +1,6 @@
 const INITIAL_STATE = {all: [], post: null};
-import {FETCH_POSTS} from '../actions/index';
+// import _ from 'lodash';
+import {FETCH_POSTS, FIND_POST, DELETE_POST} from '../actions/index';
 
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
@@ -11,6 +12,14 @@ export default function (state = INITIAL_STATE, action) {
             // var test =  {...state, all: action.payload.data};
             // console.log('vv',test);
             return test;
+        case FIND_POST:
+            // let post = _.find(state.all, {id: action.payload});
+            let post = action.payload.data;
+            return Object.assign({}, state, {post});
+            // rownowaznik
+            // return {...state, post: post};
+        case DELETE_POST:
+            
         default:
             return state;
     }

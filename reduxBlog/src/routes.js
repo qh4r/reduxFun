@@ -3,6 +3,7 @@ import {Route, IndexRoute} from 'react-router';
 import App from './components/app';
 import PostsIndex from './components/posts_index';
 import PostsNew from './components/posts_new';
+import PostsShow from './components/posts_show';
 
 //const Greeting = ({children}) => {
 //    return <div>
@@ -31,5 +32,6 @@ export default (
     <Route path="/" component={App}>
         <IndexRoute components={PostsIndex}/>
         <Route path="new" components={PostsNew} />
+        <Route path=":id" components={PostsShow} />
     </Route>
 )
