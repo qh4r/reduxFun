@@ -1,17 +1,36 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {connect} from 'react-redux';
 //import {bindActionCreators} from 'redux'; // zamiast tego przekazuje obiekt o tym samym  kluczu
 import {createPost} from '../actions/index' ;
-import {Link} from 'react-router';
+import {Link, push} from 'react-router';
 
 class PostsNew extends Component {
+    // stary sposob to:
+    // contextTypes: {
+    // router: React.PropTypes.object.isRequired
+    // },
+    // to sprawia ze rpzeszukiwane jest drzewo w pszukiwaniu czegos co ma kontekst router
+    static contextTypes = {
+        router: PropTypes.object,
+        store: PropTypes.object /// TEGO LEPIEJ nie robic
+        // context to properta na tagu <Router> ma router
+    };
+
+    onSubmit(data) {
+        this.props.createPost(data)
+            .then(() => {
+                this.context.router.push('/');
+            })
+
+    }
+
     render() {
         // taki zapis NIE DEFINIUJE fields - fields jest niepotrzebne w wersji 6 redux forms
         const {handleSubmit, resetForm, fields: {title, categories, content}} = this.props;
         //dodane w reuxForm bind
         return (
-            <form onSubmit={handleSubmit(this.props.createPost)}>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <h3>Dodaj Nowy post</h3>
                 <div className={`form-group ${title.touched && !title.valid ? 'has-danger' : ''}`}>
                     <label htmlFor="title">Tytuł</label>

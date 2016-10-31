@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchPosts} from '../actions/index';
-import { bindActionCreators } from 'redux';
+import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
 
 class PostsIndex extends Component {
@@ -21,18 +21,29 @@ class PostsIndex extends Component {
     }
 
     render() {
-        console.log(this.props.posts);
+        console.log('props', this.props.posts)
         return (
             <div>
-
                 <div className="text-xs-right">
                     <Link className="btn btn-primary" to="/new">
                         Nowy Post
                     </Link>
                 </div>
-                <div>list</div>
+                <h3>Posty</h3>
+                <ul className="list-group">
+                    {this.renderPosts()}
+                </ul>
             </div>
         )
+    }
+
+    renderPosts() {
+        return this.props.posts.map(({categories, id, title}) => {
+                return (<li className="list-group-item" key={id}>
+                    <span className="pull-xs-right">{categories}</span>
+                    <string>{title}</string>
+                </li>)
+            });
     }
 }
 
@@ -41,7 +52,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps({posts}) {
-    return {posts}
+    return {posts: posts.all}
 }
 
 //export default connect(mapStateToProps, mapDispatchToProps)(PostsIndex);
