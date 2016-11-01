@@ -1,6 +1,5 @@
 import axios from 'axios';
 import firebase from 'firebase';
-import uuid from 'uuid';
 
 export const FETCH_POSTS = Symbol('FETCH_POSTS');
 export const CREATE_POST = Symbol('CREATE_POST');
@@ -53,6 +52,7 @@ function createPostOld(props) {
     }
 }
 
+//using firebase
 // mozna zwrocic promise dzieki middlewarowi promise
 export function createPost(props){
     return new Promise(resolve => {
@@ -75,6 +75,7 @@ function findPostOld(id) {
     }
 }
 
+//using firebase
 export function findPost(id) {
     return dispatch => {
         Posts.child(id).on('value', data => {
@@ -93,6 +94,7 @@ function deletePostOld(id) {
     }
 }
 
+//using firebase
 export function deletePost(id) {
     return {
         type: DELETE_POST,
