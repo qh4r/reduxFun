@@ -6,7 +6,7 @@ export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case FETCH_POSTS:
             // var test =  Object.assign(state, {all: action.payload.data}); /// TO EJST PLYTKA KOPIA, MUTACJA, BLAD!!!
-            var test =  Object.assign({}, state, {all: action.payload.data}); /// tutaj podstawa to {}
+            var test =  Object.assign({}, state, {all: action.payload}); /// tutaj podstawa to {}
             // redux wykrywa kopie?
             console.log('vv',test);
             // var test =  {...state, all: action.payload.data};

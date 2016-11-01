@@ -7,12 +7,21 @@ export const DELETE_POST = Symbol('DELETE_POST');
 
 import rootUrl from './root_url'
 
+// PRZYKłAD UZYCIA REDUX-THUNK
+// pozwala dispatchowac - bardziej niskopoziomowy middleware niz redux promise
+// musi byc uzyty w combine middlewares by dzialac
+// wykrywa gdy akcja jest dunkcja i traktuja ja jako akcja z callbackiem (callback to dispatch)
 export function fetchPosts() {
     const request = axios.get(rootUrl('/posts'));
-    return {
-        type: FETCH_POSTS,
-        payload: request
-    };
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch({
+                type: FETCH_POSTS,
+                payload: data
+            });
+        })
+    }
 }
 
 export function createPost(props) {
