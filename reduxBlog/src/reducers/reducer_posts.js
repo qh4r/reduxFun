@@ -18,8 +18,6 @@ export default function (state = INITIAL_STATE, action) {
             return Object.assign({}, state, {post});
             // rownowaznik
             // return {...state, post: post};
-        case DELETE_POST:
-            
         default:
             return state;
     }

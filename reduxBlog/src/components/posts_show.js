@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
-import {findPost} from '../actions/index'
+import {findPost, deletePost} from '../actions/index'
 
 
 const GoBack = () => {
@@ -15,8 +15,17 @@ const GoBack = () => {
 };
 
 class PostsShow extends Component {
+    static contextTypes = {
+        router: PropTypes.object
+    };
+
     componentWillMount(){
         this.props.findPost(this.props.params.id);
+    }
+
+    onDelete() {
+        this.props.deletePost(this.props.params.id)
+            .then(() => this.context.router.push('/'));
     }
     render() {
         if(!this.props.post){
@@ -36,6 +45,9 @@ class PostsShow extends Component {
                     <p>
                         {this.props.post.content}
                     </p>
+                    <button className="btn btn-danger pull-xs-right" onClick={this.onDelete.bind(this)}>
+                        Usuń
+                    </button>
                 </div>
             </div>
         )
@@ -46,5 +58,5 @@ function mapStateToProps({posts: {post}}) {
     return {post};
 }
 
-export default connect(mapStateToProps, {findPost})(PostsShow);
+export default connect(mapStateToProps, {findPost, deletePost})(PostsShow);
 

@@ -34,7 +34,6 @@ export function findPost(id) {
 
 export function deletePost(id) {
     const request = axios.delete(rootUrl(`/posts/${id}`));
-    request.then(fetchPosts);
     return {
         type: DELETE_POST,
         payload: request
