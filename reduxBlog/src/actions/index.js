@@ -5,6 +5,7 @@ export const FETCH_POSTS = Symbol('FETCH_POSTS');
 export const CREATE_POST = Symbol('CREATE_POST');
 export const FIND_POST = Symbol('FIND_POST');
 export const DELETE_POST = Symbol('DELETE_POST');
+export const CHANGE_SELECTION = Symbol('CHANGE_SELECTION');
 
 import rootUrl from './root_url'
 
@@ -99,5 +100,12 @@ export function deletePost(id) {
     return {
         type: DELETE_POST,
         payload: Posts.child(id).remove()
+    }
+}
+
+export function updateSelection(post){
+    return {
+        type: CHANGE_SELECTION,
+        payload: post
     }
 }

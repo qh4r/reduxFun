@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchPosts} from '../actions/index';
+import {fetchPosts, updateSelection} from '../actions/index';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
 
@@ -20,8 +20,12 @@ class PostsIndex extends Component {
         console.log('did');
     }
 
+    selectPosts(post){
+
+    }
+
     render() {
-        console.log('props', this.props.posts)
+        console.log('props', this.props.selectedPosts);
         return (
             <div>
                 <div className="text-xs-right">
@@ -40,6 +44,8 @@ class PostsIndex extends Component {
     renderPosts() {
         return this.props.posts.map(({categories, id, title}) => {
             return (<li className="list-group-item" key={id}>
+                <input type="checkbox" selected={this.props.selectedPosts.indexOf(id) != -1}
+                       onClick={this.props.updateSelection.bind(this, id)} className="checkbox"> </input>
                 <Link to={`/${id}`}>
                     <span className="pull-xs-right">{categories}</span>
                     <strong>{title}</strong>
@@ -53,10 +59,10 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({fetchPosts}, dispatch);
 }
 
-function mapStateToProps({posts}) {
-    return {posts: posts.all}
+function mapStateToProps({posts, selectedPosts}) {
+    return {posts: posts.all, selectedPosts: selectedPosts.selectedPosts}
 }
 
 //export default connect(mapStateToProps, mapDispatchToProps)(PostsIndex);
 // zamiast tego mozna
-export default connect(mapStateToProps, {fetchPosts})(PostsIndex);
+export default connect(mapStateToProps, {fetchPosts, updateSelection})(PostsIndex);
