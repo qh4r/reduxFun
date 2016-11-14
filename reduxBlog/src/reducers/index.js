@@ -6,7 +6,7 @@ import SelectedPostsReducer from './reducer_selected_posts';
 const rootReducer = combineReducers({
   posts: PostsReducer,
   form: formReducer,
-  selectedPosts: SelectedPostsReducer
+  selectedPostsIds: SelectedPostsReducer
 });
 
 export default rootReducer;

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {fetchPosts, updateSelection} from '../actions/index';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
+import SelectedPostsList from './selectedPostsList';
 
 class PostsIndex extends Component {
 
@@ -20,20 +21,24 @@ class PostsIndex extends Component {
         console.log('did');
     }
 
-    selectPosts(post){
-
-    }
-
     render() {
-        console.log('props', this.props.selectedPosts);
+        console.log('props', this.props.selectedPostsIds);
         return (
             <div>
+                {(this.props.selectedPostsIds.length) ?
+                    <div>
+                        <h3>Aktualnie wybrane:</h3>
+                        <SelectedPostsList />
+                        <br />
+                    </div>
+                    : ''
+                }
                 <div className="text-xs-right">
                     <Link className="btn btn-primary" to="/new">
                         Nowy Post
                     </Link>
                 </div>
-                <h3>Posty</h3>
+                <h3>Wszystkie Posty</h3>
                 <ul className="list-group">
                     {this.renderPosts()}
                 </ul>
@@ -44,8 +49,8 @@ class PostsIndex extends Component {
     renderPosts() {
         return this.props.posts.map(({categories, id, title}) => {
             return (<li className="list-group-item" key={id}>
-                <input type="checkbox" selected={this.props.selectedPosts.indexOf(id) != -1}
-                       onClick={this.props.updateSelection.bind(this, id)} className="checkbox"> </input>
+                <input type="checkbox" defaultChecked={this.props.selectedPostsIds.indexOf(id) != -1}
+                       onClick={this.props.updateSelection.bind(this, id)} className="checkbox"></input>
                 <Link to={`/${id}`}>
                     <span className="pull-xs-right">{categories}</span>
                     <strong>{title}</strong>
@@ -59,8 +64,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({fetchPosts}, dispatch);
 }
 
-function mapStateToProps({posts, selectedPosts}) {
-    return {posts: posts.all, selectedPosts: selectedPosts.selectedPosts}
+function mapStateToProps({posts, selectedPostsIds}) {
+    return {posts: posts.all, selectedPostsIds}
 }
 
 //export default connect(mapStateToProps, mapDispatchToProps)(PostsIndex);
