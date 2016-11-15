@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchPosts, updateSelection} from '../actions/index';
+import {updateSelection} from '../actions/index';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
 import SelectedPostsList from './selectedPostsList';
@@ -13,7 +13,8 @@ class PostsIndex extends Component {
 
     //lifecycle methods
     componentWillMount() {
-        this.props.fetchPosts();
+        // fetch posts przeniesione do on Route
+        // this.props.fetchPosts();
         console.log('will');
     }
 
@@ -61,7 +62,7 @@ class PostsIndex extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchPosts}, dispatch);
+    return bindActionCreators(dispatch);
 }
 
 function mapStateToProps({posts, selectedPostsIds}) {
@@ -70,4 +71,4 @@ function mapStateToProps({posts, selectedPostsIds}) {
 
 //export default connect(mapStateToProps, mapDispatchToProps)(PostsIndex);
 // zamiast tego mozna
-export default connect(mapStateToProps, {fetchPosts, updateSelection})(PostsIndex);
+export default connect(mapStateToProps, {updateSelection})(PostsIndex);
