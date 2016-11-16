@@ -4,6 +4,7 @@ import {updateSelection} from '../actions/index';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router';
 import SelectedPostsList from './selectedPostsList';
+import ReactCssTransitionGroup from 'react-addons-css-transition-group';
 
 class PostsIndex extends Component {
 
@@ -23,17 +24,25 @@ class PostsIndex extends Component {
     }
 
     render() {
+        const transitions = {
+            transitionName: 'drop',
+            transitionEnterTimeout:500,
+            transitionLeaveTimeout:500
+        };
+
         console.log('props', this.props.selectedPostsIds);
         return (
             <div>
+                <ReactCssTransitionGroup {...transitions}>
                 {(this.props.selectedPostsIds.length) ?
-                    <div>
-                        <h3>Aktualnie wybrane:</h3>
-                        <SelectedPostsList />
-                        <br />
-                    </div>
+                        <div>
+                            <h3>Aktualnie wybrane:</h3>
+                            <SelectedPostsList />
+                            <br />
+                        </div>
                     : ''
                 }
+                </ReactCssTransitionGroup>
                 <div className="text-xs-right">
                     <Link className="btn btn-primary" to="/new">
                         Nowy Post
