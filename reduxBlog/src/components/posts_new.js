@@ -20,6 +20,13 @@ const FIELDS = {
     }
 };
 
+// context to obekt zwracany przez
+// .childContextTypes = {
+//     color: React.PropTypes.string
+// };
+// rodzica
+// router ma ustawione pole router - przykladowo
+
 class PostsNew extends Component {
     // stary sposob to:
     // contextTypes: {
@@ -31,6 +38,8 @@ class PostsNew extends Component {
         store: PropTypes.object /// TEGO LEPIEJ nie robic
         // context to properta na tagu <Router> ma router
     };
+
+    //w taju sam sposob mozna utworzyc propsTypes - wymagania dla propert
 
     onSubmit(data) {
         this.props.createPost(data)

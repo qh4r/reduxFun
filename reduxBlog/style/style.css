@@ -6,3 +6,48 @@ form a {
 form a:not([href]):not([tabindex]), form a:not([href]):not([tabindex]):hover {
     color: #FFF;
 }
+
+.fade-enter {
+    left: 100px;
+    opacity: 0;
+}
+
+.fade-enter-active {
+    opacity: 1;
+    left: 0;
+    transition: .5s ease-in all;
+}
+
+.fade-leave {
+    right: 0;
+    opacity: 1;
+}
+
+.fade-leave-active {
+    opacity: 0;
+    right: 100px;
+    transition: .5s ease-in all;
+}
+
+.drop-enter {
+    top: 100px;
+    opacity: 0;
+}
+
+.drop-enter-active {
+    opacity: 1;
+    top: 0;
+    transition: .5s ease-in all;
+}
+
+.drop-leave {
+    bottom: 0;
+    opacity: 1;
+}
+
+.drop-leave-active {
+    opacity: 0;
+    bottom: 100px;
+    transition: .5s ease-in all;
+}
+
