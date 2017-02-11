@@ -1,14 +1,16 @@
-import { renderComponent , expect } from '../test_helper';
+import {renderComponent, expect} from '../test_helper';
 import App from '../../src/components/app';
 
-describe('App' , () => {
-  let component;
+//groups similar tests together , name can be a target
+describe('App', () => {
+  // it tests single functionality about our targer
+  it('shows proper text', () => {
 
-  beforeEach(() => {
-    component = renderComponent(App);
+    const component = renderComponent(App);
+    // used to make an assertion
+    expect(component).to.contain('Testtttiing');
   });
 
-  it('renders something', () => {
-    expect(component).to.exist;
-  });
 });
+
+
