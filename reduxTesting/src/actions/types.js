@@ -1,0 +1,1 @@
+export const SAVE_COMMENT = Symbol("save_comment");
