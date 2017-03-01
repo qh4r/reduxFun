@@ -6,9 +6,7 @@ export default class Resources extends Component {
             <div>
                 test test, sekrety
                 <ul>
-                    <li>Sekret 1</li>
-                    <li>Sekret 2</li>
-                    <li>Sekret 3</li>
+                    {this.props.resources.map(x => <li key={x}>{x}</li>)}
                 </ul>
             </div>
         )

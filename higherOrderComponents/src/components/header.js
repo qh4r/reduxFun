@@ -5,7 +5,8 @@ import * as actions from "../actions/index";
 
 class Header extends Component {
     authButton() {
-        return <button onClick={() => this.props.authenticate(!this.props.authenticated)}>{this.props.authenticated ? "Zaloguj" : "Wyloguj"}</button>
+        return <button
+            onClick={() => this.props.authenticate(!this.props.authenticated)}>{!this.props.authenticated ? "Zaloguj" : "Wyloguj"}</button>
     }
 
     render() {
