@@ -11,8 +11,8 @@ class UsersList extends Component {
     renderUser = (user) => <div>
         <div key={user.name} className="card card-block">
             <h4 className="card-title">{user.name}</h4>
-            <p className="card-text">test</p>
-            <a className="btn btn-primary">mail</a>
+            <p className="card-text">{user.phone}</p>
+           <p><a href={`mailto:${user.email}`} className="btn btn-primary">{user.email}</a></p>
         </div>
     </div>;
 
