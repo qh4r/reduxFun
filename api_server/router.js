@@ -1,4 +1,9 @@
+const authenticationController = require('./controllers/authentication');
+
 module.exports = function(app) {
+    app.post('/signup', authenticationController.signup);
+
+
     app.get('/', function (req, res) {
         // send jest parsowane jako html
         res.send(`<h1>aktualny url: ${req.url}</h1>`);
