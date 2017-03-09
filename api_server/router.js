@@ -1,10 +1,14 @@
 const authenticationController = require('./controllers/authentication');
+const passportService = require('./services/passport');
+const passport = require('passport');
 
-module.exports = function(app) {
+const requireAuth = passport.authenticate('jwt', {session: false});
+
+module.exports = function (app) {
     app.post('/signup', authenticationController.signup);
 
 
-    app.get('/', function (req, res) {
+    app.get('/', requireAuth,function (req, res) {
         // send jest parsowane jako html
         res.send(`<h1>aktualny url: ${req.url}</h1>`);
         // res.send({test: "asd"}); // json zostanie sptynie rozpoznany ale mozna zrobic tylko 1 send
