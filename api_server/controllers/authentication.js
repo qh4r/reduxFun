@@ -1,9 +1,16 @@
 const UserModel = require("../models/user");
+const jwt = require('jwt-simple');
+const {secret} = require("../config");
+
+function generateToken(user) {
+    const timestamp = new Date().getTime()
+    return jwt.encode({sub: user.id, iat: timestamp}, secret);
+}
 
 module.exports = {
     signup: function (req, res, next) {
         const {email, password} = req.body;
-        if(!email || !password) {
+        if (!email || !password) {
             return res.status(422).send({error: "wymagane email i haslo"})
         }
         UserModel.findOne({email}, (err, user) => {
@@ -11,7 +18,7 @@ module.exports = {
                 return next(err);
             }
 
-            if(user) {
+            if (user) {
                 return res.status(422).send({error: `Mail ${email} już w użyciu`});
             }
 
@@ -21,11 +28,11 @@ module.exports = {
             });
 
             return newUser.save((err, result) => {
-                if(err) {
+                if (err) {
                     return next(err);
                 }
-                return res.json({success: true});
+                return res.json({token: generateToken(newUser)});
             });
         });
     }
-}
+};
