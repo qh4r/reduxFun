@@ -34,5 +34,10 @@ module.exports = {
                 return res.json({token: generateToken(newUser)});
             });
         });
+    },
+    signin: function (req, res, next) {
+        res.json({
+            token: generateToken(req.user)
+        });
     }
 };

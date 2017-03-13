@@ -26,6 +26,19 @@ userSchema.pre('save', function (next) {
     })
 });
 
+userSchema.methods.comparePassword = function(candidatePassword, cb) {
+    // tutaj trza bylo zbindowac this
+    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+        if(err) {
+            return cb(err);
+        }
+        if(!isMatch){
+            return cb(null, false);
+        }
+        cb(null, this);
+    })
+};
+
 const UserClass = mongoose.model('user', userSchema);
 
 module.exports = UserClass;
