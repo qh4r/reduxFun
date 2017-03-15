@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import {reduxForm, Field} from 'redux-form';
+import * as actions from '../../actions';
+import {connect} from 'react-redux';
 
 class Signin extends Component {
-    handleFormSubmit(data) {
-        console.log(data);
+    handleFormSubmit({email, password}) {
+        console.log(email, password);
+        this.props.signInUser(email, password)
     }
 
     render() {
@@ -22,6 +25,6 @@ class Signin extends Component {
     }
 }
 
-export default  reduxForm({
+export default connect(null, actions)(reduxForm({
     form: 'signin',
-})(Signin);
+})(Signin));
