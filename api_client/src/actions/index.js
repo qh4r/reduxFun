@@ -1,4 +1,6 @@
 import axios from 'axios';
+import {browserHistory} from 'react-router';
+import {AUTH_USER, AUTH_ERROR} from "./action_types";
 
 const API_URL = 'http://127.0.0.1:3000';
 
@@ -7,10 +9,23 @@ export function signInUser(email, password) {
     return function (dispatch) {
         axios.post(`${API_URL}/signin`, {email, password})
             .then(result => {
-                console.log(result);
+
+                dispatch({type: AUTH_USER});
+
+                //local storage jest na window
+                localStorage.setItem('token', result.data.token);
+                //nawigacja
+                browserHistory.push('/feature');
             })
             .catch(err => {
-                console.log(err)
+                dispatch(authError("błędny login lub hasło"));
             });
+    }
+}
+
+export function authError(error) {
+    return {
+        type: AUTH_ERROR,
+        payload: error
     }
 }
