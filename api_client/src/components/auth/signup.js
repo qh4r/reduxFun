@@ -5,17 +5,24 @@ import * as actions from '../../actions';
 
 class Signup extends Component {
     handleFormSubmit({email, password, passwordRepeat}) {
-
+        this.props.signupUser({
+            email,
+            password
+        });
     }
 
     render() {
+        console.log('err:',this.props.authError)
         return (
             <div>
                 <form onSubmit={this.props.handleSubmit(this.handleFormSubmit.bind(this))}>
-                    <Field name="email" label="Email" type="text" component={renderFieldContent}/>
+                    <Field name="email" label="Email" type="email" component={renderFieldContent}/>
                     <Field name="password" label="Hasło" type="password" component={renderFieldContent}/>
                     <Field name="passwordRepeat" label="Powtóż hasło" type="password" component={renderFieldContent}/>
-                    <button className="btn btn-primary" disabled={this.props.submitting} type="submit">Zarejestruj</button>
+                    {this.props.errorMsg && <div style={{color: 'red'}}><strong>Błąd!</strong> {this.props.errorMsg}</div>}
+                    <button className="btn btn-primary" disabled={this.props.submitting} type="submit">
+                        Zarejestruj
+                    </button>
                 </form>
             </div>
         )
@@ -23,7 +30,7 @@ class Signup extends Component {
 }
 
 // trzeba to tak robic bo w przypadku funkcji inline pola sie non stop przeladowuja
-function renderFieldContent({ input, label, type, meta: { touched, error } }) {
+function renderFieldContent({input, label, type, meta: {touched, error}}) {
     return <fieldset className="form-group">
         <label>{label}</label>
         <input {...input} type={type} className="form-control"/>
@@ -39,7 +46,13 @@ function validate({email, password, passwordRepeat}) {
     return errors;
 }
 
-export default connect()(reduxForm({
+function mapStateToProps({auth: {error}}) {
+    return {
+        errorMsg: error
+    }
+}
+
+export default connect(mapStateToProps, actions)(reduxForm({
     form: 'signout',
     validate
 })(Signup));
