@@ -4,6 +4,7 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import Signin from './components/auth/signin';
+import Signout from './components/auth/signout';
 import reduxThunk from 'redux-thunk';
 
 import App from './components/app';
@@ -19,6 +20,7 @@ ReactDOM.render(
                     return <p>asd</p>
                 }  }/>
                 <Route path="signin" component={Signin}/>
+                <Route path="signout" component={Signout}/>
             </Route>
         </Router>
     </Provider>
