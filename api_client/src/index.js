@@ -5,6 +5,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
+import Signup from './components/auth/signup';
 import reduxThunk from 'redux-thunk';
 
 import App from './components/app';
@@ -21,6 +22,7 @@ ReactDOM.render(
                 }  }/>
                 <Route path="signin" component={Signin}/>
                 <Route path="signout" component={Signout}/>
+                <Route path="signup" component={Signup}/>
             </Route>
         </Router>
     </Provider>
