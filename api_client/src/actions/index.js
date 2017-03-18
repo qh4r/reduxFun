@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {browserHistory} from 'react-router';
-import {AUTH_USER, AUTH_ERROR, UNAUTH_USER} from "./action_types";
+import {AUTH_USER, AUTH_ERROR, UNAUTH_USER, SET_SECRET} from "./action_types";
 
 const API_URL = 'http://127.0.0.1:3000';
 
@@ -39,11 +39,27 @@ export function signout(){
     }
 }
 
+export function fetchMessage(){
+    return function(dispatch) {
+        axios.get(API_URL, {
+            headers: {
+                authorization: localStorage.getItem('token')
+            }
+        })
+            .then(result => {
+                dispatch({
+                    type: SET_SECRET,
+                    payload: result.data.secret
+                })
+            })
+    }
+}
+
 function loginSuccess(result, dispatch) {
     dispatch({type: AUTH_USER});
 
     //local storage jest na window
     localStorage.setItem('token', result.data.token);
     //nawigacja
-    browserHistory.push('/feature');
+    browserHistory.push('/secret');
 }

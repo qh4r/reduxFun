@@ -21,9 +21,12 @@ class Header extends Component {
                                 </li>,
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/signup">Zarejestruj</Link>
-                                </li>
+                                </li>,
                             ]
                     }
+                    <li className="nav-item">
+                        <Link style={{color: 'red'}} className="nav-link" to="/secret">To strzeżony sekret</Link>
+                    </li>
                 </ul>
             </nav>
         )

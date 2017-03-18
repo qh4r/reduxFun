@@ -11,9 +11,11 @@ module.exports = function (app) {
 
     app.get('/', requireAuth,function (req, res) {
         // send jest parsowane jako html
-        res.send(`<h1>aktualny url: ${req.url}</h1>`);
+        res.json({
+            secret: "ale tajemnica he he he"
+        });
         // res.send({test: "asd"}); // json zostanie sptynie rozpoznany ale mozna zrobic tylko 1 send
         //zawartowc end nie jest parsowana
-        res.end();
+        // res.end();
     })
 };
