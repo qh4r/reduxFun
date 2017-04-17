@@ -1,0 +1,52 @@
+// on parent - return data you need on context
+
+ContextComponent extends Component {
+    getChildContext() {
+        return {
+            store: this.props.store
+        }
+    }
+
+    render() {
+
+    }
+
+    // this is one of possibilities
+    static childContextTypes = {
+        get	User: React.PropTypes.object
+    };
+}
+// can do that ore use static
+ContextComponent.childContextType = {
+    store: React.PropTypes.object
+}
+
+// ON CHILDREN - access context
+Child extends Component {
+    // option one
+    static contextTypes = {
+        store: React.PropTypes.object
+    }
+
+    render() {
+        // in class component access via this.context
+        let store = this.context.store;
+    }
+}
+
+// second possibility
+Child.contextTypes = {
+   store: React.PropTypes.object
+}
+
+// access infunctional component
+function Child2 (props, context) {
+    // acces via second parameter passed
+    let store = context.store;
+    return ();
+}
+
+// only way to declare those for functional component
+Child.contextTypes = {
+    store: React.PropTypes.object
+}
