@@ -1,12 +1,21 @@
-export default function counter(state = 0, action) {
+export function counter1(state = 0, action) {
   switch (action.type) {
-    case 'INCREMENT':
-      return state + 1
-    case 'INCREMENT_IF_ODD':
-      return (state % 2 !== 0) ? state + 1 : state
-    case 'DECREMENT':
+    case 'INCREMENT_1':
+      return state + 1;
+    case 'DECREMENT_1':
       return state - 1
     default:
       return state
   }
+}
+
+export function counter2(state = 0, action) {
+    switch (action.type) {
+        case 'INCREMENT_2':
+            return state + 1;
+        case 'DECREMENT_2':
+            return state - 1;
+        default:
+            return state
+    }
 }
