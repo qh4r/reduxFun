@@ -1,0 +1,29 @@
+.App {
+  margin: auto;
+  font-family: Roboto, sans-serif;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.users-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  .user-tile {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 18px;
+    background-color: coral;
+    color: white;
+    margin: 5px;
+    transition: background-color 3s ease-in-out;
+
+    &.mounted {
+      background-color: blueviolet;
+    }
+  }
+}

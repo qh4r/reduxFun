@@ -1,0 +1,15 @@
+[ignore]
+
+[include]
+
+[libs]
+
+[options]
+module.file_ext=.scss
+module.file_ext=.sass
+module.file_ext=.css
+module.file_ext=.js
+module.file_ext=.jsx
+
+module.name_mapper='.*\.scss$' -> './flowScssHelper.js'
+module.name_mapper='.*\.sass$' -> './flowScssHelper.js'
