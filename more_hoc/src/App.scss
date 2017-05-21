@@ -5,11 +5,16 @@
   max-width: 1200px;
 }
 
-.users-container {
+@mixin flexWithRows() {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   flex-wrap: wrap;
+}
+
+.users-container {
+  @include flexWithRows();
+  margin-bottom: 30px;
 
   .user-tile {
     width: 100px;
@@ -27,3 +32,71 @@
     }
   }
 }
+
+.widgets-container {
+  @include flexWithRows();
+
+  @keyframes show-header {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .widget {
+    width: 200px;
+    position: relative;
+    background-color: chartreuse;
+    color: white;
+    text-align: center;
+    font-family: Roboto;
+
+    .widget-header {
+      position: absolute;
+      box-sizing: border-box;
+      padding: 5px;
+      background-color: coral;
+      font-size: 18px;
+      color: white;
+      width: 50%;
+      line-height: 20px; // padding nie wlicza sie w line height
+      height: 30px;
+      left: 25%;
+      top: - 15px;
+      display: none;
+    }
+    &:hover {
+      .widget-header {
+        display: block;
+        animation: show-header 1s forwards;
+      }
+    }
+
+    .widget-body {
+      margin-top: 15px;
+      font-size: 24px;
+    }
+    &:hover {
+      .widget-details.widget-closed {
+        //animation: widget-open 1s ease-out forwards;
+        height: 100px;
+      }
+    }
+
+    // OKAZUJE SIE ze lepiej tutaj uzyc transition gdyz nie animuje sie ono na loadzie strony
+    .widget-details {
+      background-color: #6c9289;
+      transition: height 1s;
+      margin: 5px 10%;
+      overflow: hidden;
+      height: 0;
+      &.widget-open {
+        height: 100px;
+      }
+    }
+  }
+}
+
+
