@@ -66,13 +66,17 @@
       left: 25%;
       top: - 15px;
       display: none;
-    }
-    &:hover {
-      .widget-header {
+      &.header-active {
         display: block;
         animation: show-header 1s forwards;
       }
     }
+    //&:hover {
+    //  .widget-header {
+    //    display: block;
+    //    animation: show-header 1s forwards;
+    //  }
+    //}
 
     .widget-body {
       margin-top: 15px;
