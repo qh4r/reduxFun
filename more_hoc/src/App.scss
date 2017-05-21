@@ -51,7 +51,8 @@
     background-color: chartreuse;
     color: white;
     text-align: center;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
+    margin: 2px;
 
     .widget-header {
       position: absolute;
@@ -98,6 +99,16 @@
       height: 0;
       &.widget-open {
         height: 100px;
+      }
+    }
+
+    &.user-widget {
+      background-color: darkgoldenrod;
+      color: white;
+      font-size: 24px;
+      text-align: center;
+      .user-nickname {
+        font-style: italic;
       }
     }
   }

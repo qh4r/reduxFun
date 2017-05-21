@@ -2,13 +2,14 @@
 
 type WidgetProps = {
   secret: string,
-  detailsVisible: boolean,
-  setVisible: () => void
+  isActive: boolean,
+  toggle: () => void
 }
 
 import React from 'react';
 import { compose, withHandlers, withState } from 'recompose';
 
+//withState( nazwaZmiennejStanu, funkcjaZmiany, wartoscPoczatkowa)
 const withToggle = () =>
   compose(
     withState('isActive', 'toggle', false),
@@ -44,7 +45,6 @@ const Details = ({secret, detailsVisible}) => <div
   {secret}
 </div>
 
-//withState( nazwaZmiennejStanu, funkcjaZmiany, wartoscPoczatkowa)
 // export const Widget = withState('detailsVisible', 'setVisible', false)(({secret, detailsVisible, setVisible}: WidgetProps) => {
 //   return <div className="widget"
 //               onClick={() => setVisible(x => !x)}>
