@@ -14,6 +14,7 @@ import {fakeApi} from "./fakeApi";
 import {UserWidget} from "./components/UserWidget";
 
 import './App.scss';
+import {FilteredUsers, UserWidgetsList} from "./components/UserWidgetsList";
 
 const WrappedUser = BaseHoc({name: "Buka"})(UserTile);
 const ColorChangingUser = ColorChangeHoc()(UserTile);
@@ -48,6 +49,10 @@ const UserWidgetWithApi = withUserFetch(({user}) =>
 const ColorChangingWrappedUser = colorChangingWrappedEnchancement((props) =>
   <UserTile {...props}></UserTile>);
 
+const YoungUsers = FilteredUsers({rangeEnd: 21});
+const OldUsers = FilteredUsers({rangeStart: 36});
+const BloomingUsers = FilteredUsers({rangeStart: 24, rangeEnd: 40});
+
 class App extends Component {
   render() {
     return (
@@ -63,6 +68,10 @@ class App extends Component {
           <Widget secret="To sekret"/>
           <ReduxWidget secret="to też..."/>
           <UserWidgetWithApi/>
+          <UserWidgetsList name="All" users={fakeApi.getUsersNow()}/>
+          <BloomingUsers name="In Prime" users={fakeApi.getUsersNow()}/>
+          <YoungUsers name="Young" users={fakeApi.getUsersNow()}/>
+          <OldUsers name="Oldies" users={fakeApi.getUsersNow()}></OldUsers>
         </div>
       </div>
     )
