@@ -1,5 +1,7 @@
 import React from 'react';
-import {branch, renderComponent} from "recompose";
+import {branch, renderComponent, renderNothing} from "recompose";
+
+//renderNothing
 
 const UserData = ({user}) =>
   <div>
@@ -11,12 +13,23 @@ const Loader = branch(
   renderComponent(() => <span>Loading...</span>) // koniecznie trzeba uzyc render component
 );
 
+
+
+const Nothing = renderNothing(); // render nothing ni renderuje niczego
+      // - przydaje sie wlasnie do branchowania i nie renderowania czegos w branchu
+
+//branche mozna laczyc composem
+//compose(
+// branch(...),
+// branch(...)
+//)
 const UserDataWithLoader = Loader(UserData);
 
 export const UserWidget = ({user}) => {
   return (
     <div className="widget user-widget">
       <UserDataWithLoader user={user}/>
+      <Nothing></Nothing>
     </div>
   )
 }
