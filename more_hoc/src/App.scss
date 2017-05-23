@@ -125,4 +125,34 @@
   }
 }
 
+.head-bar {
+  width: 100%;
+
+  a, a:visited, a:hover {
+    text-decoration: none;
+    color: white;
+  }
+
+  header {
+    display: inline-block;
+    padding: 5px;
+    background-color: #6c9289;
+    border: {
+      radius: 4px;
+    }
+  }
+
+  nav {
+    background-color: darkcyan;
+
+    a {
+      display: inline-block; // alternatywa to dac lekki padding do kontenera i brak padingu tu
+      padding: 2px 10px;
+      border-right: 1px solid darken(darkcyan, 10%);
+      box-sizing: border-box;
+      margin: 5px
+    }
+  }
+}
+
 

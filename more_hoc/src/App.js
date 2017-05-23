@@ -12,6 +12,7 @@ import {Widget} from "./components/Widget";
 import {ReduxWidget} from "./components/ReduxWidget";
 import {fakeApi} from "./fakeApi";
 import {UserWidget} from "./components/UserWidget";
+import {HeadBar} from "./components/HeadBar";
 
 import './App.scss';
 import {FilteredUsers, UserWidgetsList} from "./components/UserWidgetsList";
@@ -53,11 +54,12 @@ const YoungUsers = FilteredUsers({rangeEnd: 21});
 const OldUsers = FilteredUsers({rangeStart: 36});
 const BloomingUsers = FilteredUsers({rangeStart: 24, rangeEnd: 40});
 
+
 class App extends Component {
   render() {
     return (
       <div className="App">
-        HOC HOC
+        <HeadBar/>
         <div className="users-container">
           <UserTile name="Rafał"></UserTile>
           <WrappedUser name="Krzyś"></WrappedUser>
