@@ -16,6 +16,8 @@ import {HeadBar} from "./components/HeadBar";
 
 import './App.scss';
 import {FilteredUsers, UserWidgetsList} from "./components/UserWidgetsList";
+import {CustomizableLink} from "./components/CustomizableLink";
+import {Calculator} from "./components/BrokenCalculator";
 
 const WrappedUser = BaseHoc({name: "Buka"})(UserTile);
 const ColorChangingUser = ColorChangeHoc()(UserTile);
@@ -74,6 +76,9 @@ class App extends Component {
           <BloomingUsers name="In Prime" users={fakeApi.getUsersNow()}/>
           <YoungUsers name="Young" users={fakeApi.getUsersNow()}/>
           <OldUsers name="Oldies" users={fakeApi.getUsersNow()}></OldUsers>
+          <CustomizableLink type="a" to="/#link-a">Link Anchor</CustomizableLink>
+          <CustomizableLink type="button" to="/#link-button">Link Button</CustomizableLink>
+          <Calculator/>
         </div>
       </div>
     )
