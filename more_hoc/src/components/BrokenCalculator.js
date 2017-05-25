@@ -1,5 +1,9 @@
 import React from 'react';
-import {withPropsOnChange, withReducer} from "recompose";
+import PropTypes from 'prop-types';
+import {
+  compose, onlyUpdateForKeys, onlyUpdateForPropTypes, setPropTypes, withPropsOnChange,
+  withReducer
+} from "recompose";
 
 
 const PureCalculator = ({state: {value1, value2}, dispatch}) =>
@@ -29,7 +33,30 @@ const Result = ({value1, value2}) =>
 //withPropsOnChange jako pierwszy argument przyjmuje tablice propert i tylko te wymienione beda powodowaly zmiany
 // w dzieciach. W tym wypadku wartosci w kalkulatorze zmienia sie dopiero gdy zmianie ulegnie zmienna 2, zmienna 1 nie
 // spowoduje wyswietlenia nowego wyniku
-const WrappedResult = withPropsOnChange(
+
+// WSZYSTKIE PONIZSZE ROBIA TO SAMO
+
+const WrappedResult2 = withPropsOnChange(
   ['value2'],
   ({value1, value2}) => ({value1, value2})
 )(Result);
+
+// rownowaznik tego co powyzej
+const WrappedResult1 = onlyUpdateForKeys(['value2'])(Result);
+
+//kolejny rownowaznik
+const WrappedResult = compose(
+  onlyUpdateForPropTypes,
+  setPropTypes({
+      value2: PropTypes.string.isRequired
+    })
+)(Result); // TWORZENIE KOMPONENTOW w compose przebiega od wewnatrz do zewnatrz (sa wrapowane koljno)
+// WIDAC TO NA TYM PRZYKLADZIE
+
+// FUNKCJA pure - sprawia ze update (rerender) nastepuje tylko po realnej zmianie wartosci przekazywanych propsow
+// onlyUpdateForKeys wymaga podania pol dla ktorych bedzie wystepowal update
+// jest tez onlyupdateForPropTypes
+
+// jest jrszcze should update wrapujace should component update
+// porownujemy previous i next propsy i zwracamy boolean
+
