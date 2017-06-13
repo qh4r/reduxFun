@@ -6,28 +6,18 @@
 
 import {fromJS} from 'immutable';
 import {
-  DEFAULT_ACTION,
+  REQUEST_TOPICS_SUCCEEDED
 } from './constants';
 
 const initialState = fromJS({
   topics: [
-    {
-      name: "Cars",
-      desc: "Well that's about cars and stuff"
-    }, {
-      name: "Computers",
-      desc: "For the science"
-    }, {
-      name: "Animals",
-      desc: "Not the band, everyone loves them anyways"
-    }
   ]
 });
 
 function navigationReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case REQUEST_TOPICS_SUCCEEDED:
+      return fromJS({...state, topics: action.topics});
     default:
       return state;
   }

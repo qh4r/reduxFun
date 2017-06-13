@@ -9,8 +9,17 @@ import { connect } from 'react-redux';
 import selectNavigation from './selectors';
 import styles from './styles.css';
 import NavigationComponent from '../../components/NavigationComponent';
+import * as actions from "./actions";
 
 export class Navigation extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  static propTypes = {
+    requestTopics: React.PropTypes.func.isRequired
+  }
+
+  componentWillMount(){
+    this.props.requestTopics();
+  }
+
   render() {
     console.log('navigation props', this.props);
     return (
@@ -26,11 +35,11 @@ const mapStateToProps = selectNavigation();
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch
+    requestTopics: () => dispatch(actions.requestTopics)
   };
 }
 
 export default connect((state) => {
   console.log("STATE NAV",state);
   return mapStateToProps(state);
-}, mapDispatchToProps)(Navigation);
+}, actions)(Navigation);
