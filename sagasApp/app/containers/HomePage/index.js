@@ -10,9 +10,8 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-import Navigation from "../Navigation/index";
+import Navigation from '../Navigation/index';
+import LinksListContainer from '../LinksListContainer/index';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -20,7 +19,8 @@ export default class HomePage extends React.Component { // eslint-disable-line r
     return (
       <div>
         HOME
-        <Navigation/>
+        <Navigation />
+        <LinksListContainer />
       </div>
     );
   }

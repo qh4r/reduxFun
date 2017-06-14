@@ -24,15 +24,19 @@ export default function createRoutes(store) {
         const importModules = Promise.all([
           System.import('containers/HomePage'),
           System.import('containers/Navigation/reducer'),
-          System.import('containers/Navigation/sagas')
+          System.import('containers/Navigation/sagas'),
+          System.import('containers/LinksListContainer/reducer'),
+          System.import('containers/LinksListContainer/sagas'),
         ]);
 
         const renderRoute = loadModule(cb);
 
         // TRZEBA ZAREJESTROWAC WSZYSTKIE WYMAGANE REDUCERY I SAGI ~ dekompoozycja tablicy
-        importModules.then(([component, reducer, sagas]) => {
-          injectReducer('navigation', reducer.default);
-          injectSagas('navigation', sagas.default);
+        importModules.then(([component, navReducer, navSagas, linksReducer, linksSagas]) => {
+          injectReducer('navigation', navReducer.default);
+          injectSagas('navigation', navSagas.default);
+          injectReducer('linksListContainer', linksReducer.default);
+          injectSagas('linksListContainer', linksSagas.default);
           renderRoute(component);
         });
 

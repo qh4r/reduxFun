@@ -9,11 +9,12 @@ import { connect } from 'react-redux';
 import selectNavigation from './selectors';
 import styles from './styles.css';
 import NavigationComponent from '../../components/NavigationComponent';
-import * as actions from "./actions";
+import * as actions from './actions';
 
 export class Navigation extends React.Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
-    requestTopics: React.PropTypes.func.isRequired
+    requestTopics: React.PropTypes.func.isRequired,
+    selectTopic: React.PropTypes.func.isRequired,
   }
 
   componentWillMount(){
@@ -25,7 +26,7 @@ export class Navigation extends React.Component { // eslint-disable-line react/p
     return (
       <div className={styles.navigation}>
         NAVIGATION
-        <NavigationComponent {...this.props}/>
+        <NavigationComponent {...this.props} pickTopic={(topic) => this.props.selectTopic(topic)} />
       </div>
     );
   }
@@ -40,6 +41,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect((state) => {
-  console.log("STATE NAV",state);
+  console.log('STATE NAV',state);
   return mapStateToProps(state);
 }, actions)(Navigation);

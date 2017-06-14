@@ -5,9 +5,10 @@
  */
 
 import {
+  PICK_TOPIC,
   REQUEST_TOPICS,
   REQUEST_TOPICS_FAILED,
-  REQUEST_TOPICS_SUCCEEDED
+  REQUEST_TOPICS_SUCCEEDED,
 } from './constants';
 
 export function requestTopics() {
@@ -19,13 +20,20 @@ export function requestTopics() {
 export function requestTopicsSucceeded(topics) {
   return {
     type: REQUEST_TOPICS_SUCCEEDED,
-    topics
-  }
+    topics,
+  };
 }
 
 export function requestTopicsFailed(msg) {
   return {
     type: REQUEST_TOPICS_FAILED,
     msg,
-  }
+  };
+}
+
+export function selectTopic(topic) {
+  return {
+    type: PICK_TOPIC,
+    topic,
+  };
 }
