@@ -15,9 +15,10 @@ export class Navigation extends React.Component { // eslint-disable-line react/p
   static propTypes = {
     requestTopics: React.PropTypes.func.isRequired,
     pickTopic: React.PropTypes.func.isRequired,
+    toggleMenu: React.PropTypes.func.isRequired,
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.props.requestTopics();
   }
 
@@ -26,7 +27,11 @@ export class Navigation extends React.Component { // eslint-disable-line react/p
     return (
       <div className={styles.navigation}>
         NAVIGATION
-        <NavigationComponent {...this.props} pickTopic={(topic) => this.props.pickTopic(topic)} />
+        <NavigationComponent
+          {...this.props}
+          pickTopic={(topic) => this.props.pickTopic(topic)}
+          toggleMenu={() => this.props.toggleMenu()}
+        />
       </div>
     );
   }
@@ -36,11 +41,11 @@ const mapStateToProps = selectNavigation();
 
 function mapDispatchToProps(dispatch) {
   return {
-    requestTopics: () => dispatch(actions.requestTopics)
+    requestTopics: () => dispatch(actions.requestTopics),
   };
 }
 
 export default connect((state) => {
-  console.log('STATE NAV',state);
+  console.log('STATE NAV', state);
   return mapStateToProps(state);
 }, actions)(Navigation);
