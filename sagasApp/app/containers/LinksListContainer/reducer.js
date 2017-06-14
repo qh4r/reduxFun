@@ -5,20 +5,16 @@
  */
 
 import { fromJS } from 'immutable';
-import {
-} from './constants';
+import { PICK_TOPIC_SUCCESS } from './constants';
 
 const initialState = fromJS({
-  links: [{
-    description: 'some desc',
-    url: 'www.wp.pl',
-    topicName: 'links',
-    id: 'anythig',
-  }],
+  links: [],
 });
 
 function linksListContainerReducer(state = initialState, action) {
   switch (action.type) {
+    case PICK_TOPIC_SUCCESS:
+      return fromJS({ ...state.toJS(), links: action.links })
     default:
       return state;
   }

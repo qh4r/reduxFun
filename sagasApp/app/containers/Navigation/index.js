@@ -14,7 +14,7 @@ import * as actions from './actions';
 export class Navigation extends React.Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     requestTopics: React.PropTypes.func.isRequired,
-    selectTopic: React.PropTypes.func.isRequired,
+    pickTopic: React.PropTypes.func.isRequired,
   }
 
   componentWillMount(){
@@ -26,7 +26,7 @@ export class Navigation extends React.Component { // eslint-disable-line react/p
     return (
       <div className={styles.navigation}>
         NAVIGATION
-        <NavigationComponent {...this.props} pickTopic={(topic) => this.props.selectTopic(topic)} />
+        <NavigationComponent {...this.props} pickTopic={(topic) => this.props.pickTopic(topic)} />
       </div>
     );
   }

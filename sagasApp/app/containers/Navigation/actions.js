@@ -31,7 +31,7 @@ export function requestTopicsFailed(msg) {
   };
 }
 
-export function selectTopic(topic) {
+export function pickTopic(topic) {
   return {
     type: PICK_TOPIC,
     topic,
