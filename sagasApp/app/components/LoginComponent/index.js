@@ -12,6 +12,11 @@ import classNames from 'classnames';
 
 class LoginComponent extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
+  static propTypes = {
+    login: React.PropTypes.func.isRequired,
+    cancelLogin: React.PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -20,11 +25,13 @@ class LoginComponent extends React.Component { // eslint-disable-line react/pref
   }
 
   loginClicked = () => {
-    const emial = this.loginInput.value;
-    if (!emailValidator.validate(emial)) {
+    const email = this.loginInput.value;
+    if (!emailValidator.validate(email)) {
       this.setState({
         emailError: 'Please provide a valid email',
       });
+    } else {
+      this.props.login(email);
     }
   }
 
@@ -49,7 +56,7 @@ class LoginComponent extends React.Component { // eslint-disable-line react/pref
           {this.state.emailError}
         </div>}
         <div className={classNames(styles.actionContainer)}>
-          <div className={styles.button}>
+          <div className={styles.button} onClick={() => this.props.cancelLogin()}>
             cancel
           </div>
           <div

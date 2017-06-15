@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { selectLoginContainer } from '../LoginContainer/selectors';
 
 /**
  * Direct selector to the navigation state domain
@@ -16,9 +17,9 @@ const selectNavigationDomain = () => state => state.get('navigation');
 
 export const selectNavigation = () => createSelector(
   selectNavigationDomain(),
-  (substate) => {
-    return substate.toJS();
-  }
+  selectLoginContainer(),
+  (substate, loginState) =>
+    ({ ...substate.toJS(), email: loginState.email }),
 );
 
 export default selectNavigation;

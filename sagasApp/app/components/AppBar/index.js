@@ -10,7 +10,7 @@ import { Link } from 'react-router';
 
 import styles from './styles.css';
 
-function AppBar({ toggleMenu }) {
+function AppBar({ toggleMenu, email }) {
   return (
     <div className={styles.appBar}>
       <div
@@ -26,7 +26,7 @@ function AppBar({ toggleMenu }) {
         Testy Testy
       </div>
       <div className={styles.linkContainer}>
-        <Link className={styles.link} to="/login">log in</Link>
+        { email || <Link className={styles.link} to="/login">log in</Link>}
       </div>
     </div>
   );
@@ -34,6 +34,7 @@ function AppBar({ toggleMenu }) {
 
 AppBar.propTypes = {
   toggleMenu: React.PropTypes.func.isRequired,
+  email: React.PropTypes.string.isRequired,
 }
 
 export default AppBar;

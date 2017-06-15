@@ -8,6 +8,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import selectLoginContainer from './selectors';
 import LoginComponent from '../../components/LoginComponent/index';
+import * as actions from './actions';
 
 export class LoginContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -27,4 +28,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default connect(mapStateToProps, actions)(LoginContainer);

@@ -14,7 +14,7 @@ const initialState = fromJS({
   topics: [],
   isMenuOpen: false,
   activeTopic: '',
-  routerLocation: ''
+  routerLocation: '',
 });
 
 function navigationReducer(state = initialState, action) {
