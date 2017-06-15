@@ -22,7 +22,6 @@ export default class HomePage extends React.Component { // eslint-disable-line r
   render() {
     return (
       <div>
-        HOME
         <Navigation />
         {/* <LinksListContainer /> */}
         {this.props.children}

@@ -33,7 +33,7 @@ function* pickDefaultTopic() {
   // select zwraca aktualny state , tutaj trza by zrobic conajmniej toJS
   const state = yield select(selectNavigation());
   console.log('YIELDED STATE',state);
-  if (!state.activeTopic) {
+  if (/^\/topics\/[^\/]*$/.test(state.routerLocation) && !state.activeTopic) {
     yield* pushTopicToUrl({ topic: { name: state.topics[0].name } });
   }
 }

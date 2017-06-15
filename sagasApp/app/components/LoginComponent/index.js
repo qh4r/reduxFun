@@ -1,0 +1,67 @@
+/**
+ *
+ * LoginComponent
+ *
+ */
+
+import React from 'react';
+
+import styles from './styles.css';
+import emailValidator from 'email-validator';
+import classNames from 'classnames';
+
+class LoginComponent extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      emailError: '',
+    };
+  }
+
+  loginClicked = () => {
+    const emial = this.loginInput.value;
+    if (!emailValidator.validate(emial)) {
+      this.setState({
+        emailError: 'Please provide a valid email',
+      });
+    }
+  }
+
+  render() {
+    return (
+      <div className={styles.loginComponent}>
+        <div className={styles.header}>
+          Use email to login
+        </div>
+        <input
+          type="text"
+          className={classNames(styles.input, { [styles.emailError]: this.state.emailError })}
+          placeholder="email"
+          ref={(loginInput) => {
+            this.loginInput = loginInput;
+          }}
+          onChange={() => this.setState({
+            emailError: '',
+          })}
+        />
+        {this.state.emailError && <div className={styles.errorMsg}>
+          {this.state.emailError}
+        </div>}
+        <div className={classNames(styles.actionContainer)}>
+          <div className={styles.button}>
+            cancel
+          </div>
+          <div
+            className={styles.button}
+            onClick={this.loginClicked}
+          >
+            log in
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default LoginComponent;

@@ -25,7 +25,6 @@ export class Navigation extends React.Component { // eslint-disable-line react/p
   render() {
     return (
       <div className={styles.navigation}>
-        NAVIGATION
         <NavigationComponent
           {...this.props}
           pickTopic={(topic) => this.props.pickTopic(topic)}

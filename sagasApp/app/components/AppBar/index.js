@@ -6,6 +6,7 @@
 
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { Link } from 'react-router';
 
 import styles from './styles.css';
 
@@ -25,7 +26,7 @@ function AppBar({ toggleMenu }) {
         Testy Testy
       </div>
       <div className={styles.linkContainer}>
-        log in
+        <Link className={styles.link} to="/login">log in</Link>
       </div>
     </div>
   );
