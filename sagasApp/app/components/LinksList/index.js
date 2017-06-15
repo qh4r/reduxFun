@@ -10,9 +10,10 @@ import React from 'react';
 import styles from './styles.css';
 import Link from '../Link';
 
-function LinksList({ links }) {
+function LinksList({ links, topicName }) {
   return (
     <div className={styles.linksList}>
+      Location: {topicName}
       {links.map((link) =>
         <Link key={link.id} link={link} />,
       )}
@@ -26,6 +27,7 @@ LinksList.propTypes = {
     url: React.PropTypes.string.isRequired,
     id: React.PropTypes.string.isRequired,
   })).isRequired,
+  topicName: React.PropTypes.string.isRequired,
 };
 
 export default LinksList;

@@ -14,9 +14,14 @@ const selectLinksListContainerDomain = () => state => state.get('linksListContai
  * Default selector used by LinksListContainer
  */
 
+const selectRouteTopic = () =>
+  (state, props) =>
+    props.params.topicName;
+
 const selectLinksListContainer = () => createSelector(
   selectLinksListContainerDomain(),
-  (substate) => substate.toJS()
+  selectRouteTopic(),
+  (substate, topicName) => ({ ...substate.toJS(), topicName }),
 );
 
 export default selectLinksListContainer;

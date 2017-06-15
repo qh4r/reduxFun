@@ -15,12 +15,17 @@ import LinksListContainer from '../LinksListContainer/index';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
+  static propTypes = {
+    children: React.PropTypes.element,
+  }
+
   render() {
     return (
       <div>
         HOME
         <Navigation />
-        <LinksListContainer />
+        {/* <LinksListContainer /> */}
+        {this.props.children}
       </div>
     );
   }

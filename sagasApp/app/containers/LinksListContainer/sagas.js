@@ -18,7 +18,8 @@ function* fetchTopics({ topic }) {
 }
 
 export function* pickTopicSaga() {
-  yield* takeLatest(PICK_TOPIC, fetchTopics);
+  // bedzie trigerowane na routingu
+  // yield* takeLatest(PICK_TOPIC, fetchTopics);
 }
 
 export default [
