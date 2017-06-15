@@ -1,0 +1,51 @@
+.link { /* stylelint-disable */
+  background-color: #FFF;
+  display: flex;
+  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.11764) 0px 1px 6px, rgba(0, 0, 0, 0.11764) 0px 1px 4px;
+  padding: 10px;
+  margin-top: 20px;
+
+  @nest & .voteContainer {
+    padding: 15px;
+
+    @nest & .voteCount {
+      font-size: 20px;
+      text-align: center;
+      padding-bottom: 5px;
+      padding-top: 5px;
+
+      @nest & .trailingHash {
+        color: #111;
+        &::after {
+          display: inline;
+          content: '#';
+        }
+      }
+    }
+  }
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+.description {
+  color: #757575;
+}
+
+.votingIcon {
+  font-size: 40px;
+}
+
+.linkAnchor {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: underline;
+  }
+}

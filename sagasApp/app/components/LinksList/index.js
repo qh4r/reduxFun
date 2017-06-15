@@ -1,20 +1,21 @@
 /**
-*
-* LinksList
-*
-*/
+ *
+ * LinksList
+ *
+ */
 
 import React from 'react';
 
 
 import styles from './styles.css';
+import Link from '../Link';
 
 function LinksList({ links }) {
   return (
     <div className={styles.linksList}>
-      {links.map((link) => <div key={link.id}>
-        {link.url} -> {link.description}
-      </div>)}
+      {links.map((link) =>
+        <Link key={link.id} link={link} />,
+      )}
     </div>
   );
 }
