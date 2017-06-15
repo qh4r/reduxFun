@@ -13,7 +13,7 @@ import Link from '../Link';
 function LinksList({ links, topicName }) {
   return (
     <div className={styles.linksList}>
-      Location: {topicName}
+      <h2>Location: {topicName}</h2>
       {links.map((link) =>
         <Link key={link.id} link={link} />,
       )}

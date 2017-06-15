@@ -1,16 +1,15 @@
 import { take, call, put, select } from 'redux-saga/effects';
 import { takeLatest } from 'redux-saga';
 import { pickTopicFailed, pickTopicSuccess } from './actions';
-import { PICK_TOPIC } from '../Navigation/constants';
+import { PICK_TOPIC_REQUEST } from './constants';
 
 function fetchTopicsCall(topic) {
-  return fetch(`http://localhost:3000/api/topics/${topic.name}/links`).then((res) => res.json());
+  return fetch(`http://localhost:3000/api/topics/${topic}/links`).then((res) => res.json());
 }
 
-function* fetchTopics({ topic }) {
+function* fetchTopics({ topicName }) {
   try {
-    const result = yield call(fetchTopicsCall, topic);
-    console.log('LINKS FetCHED', result);
+    const result = yield call(fetchTopicsCall, topicName);
     yield put(pickTopicSuccess(result));
   } catch ({ message }) {
     yield put(pickTopicFailed(message));
@@ -19,7 +18,7 @@ function* fetchTopics({ topic }) {
 
 export function* pickTopicSaga() {
   // bedzie trigerowane na routingu
-  // yield* takeLatest(PICK_TOPIC, fetchTopics);
+  yield* takeLatest(PICK_TOPIC_REQUEST, fetchTopics);
 }
 
 export default [

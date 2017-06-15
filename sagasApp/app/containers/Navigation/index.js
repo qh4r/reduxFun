@@ -23,7 +23,6 @@ export class Navigation extends React.Component { // eslint-disable-line react/p
   }
 
   render() {
-    console.log('navigation props', this.props);
     return (
       <div className={styles.navigation}>
         NAVIGATION
@@ -46,6 +45,5 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect((state) => {
-  console.log('STATE NAV', state);
   return mapStateToProps(state);
 }, actions)(Navigation);

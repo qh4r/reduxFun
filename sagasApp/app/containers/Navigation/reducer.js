@@ -13,7 +13,7 @@ import {
 const initialState = fromJS({
   topics: [],
   isMenuOpen: false,
-  activeTopic: {},
+  activeTopic: '',
 });
 
 function navigationReducer(state = initialState, action) {
@@ -26,7 +26,7 @@ function navigationReducer(state = initialState, action) {
       // return fromJS({ ...pureState, isMenuOpen: !pureState.isMenuOpen });
       return state.set('isMenuOpen', !state.get('isMenuOpen'));
     case PICK_TOPIC:
-      return state.set('activeTopic', action.topic).set('isMenuOpen', false);
+      return state.set('activeTopic', action.topic.name).set('isMenuOpen', false);
     default:
       return state;
   }

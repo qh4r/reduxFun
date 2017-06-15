@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 /**
  * Direct selector to the navigation state domain
  */
-const selectNavigationDomain = () => state => {console.log('state',state); return state.get('navigation')};
+const selectNavigationDomain = () => state => state.get('navigation');
 
 /**
  * Other specific selectors
@@ -14,7 +14,7 @@ const selectNavigationDomain = () => state => {console.log('state',state); retur
  * Default selector used by Navigation
  */
 
-const selectNavigation = () => createSelector(
+export const selectNavigation = () => createSelector(
   selectNavigationDomain(),
   (substate) => {
     return substate.toJS();
