@@ -15,6 +15,7 @@ export class LinksListContainer extends React.Component { // eslint-disable-line
   static propTypes = {
     requestLinks: React.PropTypes.func.isRequired,
     topicName: React.PropTypes.string.isRequired,
+    children: React.PropTypes.element,
   }
 
   componentWillMount() {
@@ -31,6 +32,7 @@ export class LinksListContainer extends React.Component { // eslint-disable-line
     return (
       <div>
         <LinksList {...this.props} />
+        {this.props.children}
       </div>
     );
   }

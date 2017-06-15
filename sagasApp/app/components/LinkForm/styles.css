@@ -1,0 +1,72 @@
+:root {
+  --error-color: #F00;
+
+  --header-style: {
+    font-size: 22px;
+    color: #222;
+    margin-bottom: 20px;
+  }
+}
+
+.linkForm { /* stylelint-disable */
+  background-color: #fff;
+  width: 320px;
+  padding: 25px;
+  border-radius: 2px;
+  text-decoration: none;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-25%);
+}
+
+.overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow-x: hidden;
+}
+
+//just a showcase
+.header {
+  @apply --header-style;
+}
+
+.input {
+  padding: 5px;
+  border: 0 solid rgba(0, 0, 0, 0.2);
+  border-bottom-width: 1px;
+  width: 100%;
+  font-size: 18px;
+
+  &.emailError {
+    border-color: var(--error-color);
+  }
+}
+
+.errorMsg {
+  color: var(--error-color)
+}
+
+.actionContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.button {
+  text-transform: uppercase;
+  padding: 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  color: #00afcc;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    font-weight: 700;
+  }
+}

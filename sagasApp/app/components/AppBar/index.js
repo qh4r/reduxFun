@@ -37,4 +37,8 @@ AppBar.propTypes = {
   email: React.PropTypes.string.isRequired,
 }
 
+AppBar.defaultProps = {
+  email: '',
+}
+
 export default AppBar;

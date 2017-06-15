@@ -32,9 +32,10 @@ function* fetchTopicsSaga() {
 function* pickDefaultTopic() {
   // select zwraca aktualny state , tutaj trza by zrobic conajmniej toJS
   const state = yield select(selectNavigation());
-  console.log('YIELDED STATE',state);
-  if (/^\/topics\/[^\/]*$/.test(state.routerLocation) && !state.activeTopic) {
-    yield* pushTopicToUrl({ topic: { name: state.topics[0].name } });
+  console.log('YIELDED STATE', state);
+  if (/^\/topics\/.*/.test(state.routerLocation) && !state.activeTopic) {
+    console.log('REDIRECTTTTT', /^\/topics\/.*/.test(state.routerLocation));
+    yield put(push(state.routerLocation.replace(/(\/topics\/)([^\/]+)(.*)/, (x, ...parts) => `${parts[0]}${state.topics[0].name}${parts[2]}`)));
   }
 }
 
