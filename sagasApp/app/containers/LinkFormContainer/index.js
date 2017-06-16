@@ -8,6 +8,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import selectLinkFormContainer from './selectors';
 import LinkForm from '../../components/LinkForm/index';
+import * as actions from './actions';
 
 export class LinkFormContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -27,4 +28,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LinkFormContainer);
+export default connect(mapStateToProps, actions)(LinkFormContainer);

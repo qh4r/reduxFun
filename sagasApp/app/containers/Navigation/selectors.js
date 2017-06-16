@@ -15,6 +15,8 @@ const selectNavigationDomain = () => state => state.get('navigation');
  * Default selector used by Navigation
  */
 
+export const selectRouteTopic = () => (state, props) => props.params.topicName;
+
 export const selectNavigation = () => createSelector(
   selectNavigationDomain(),
   selectLoginContainer(),

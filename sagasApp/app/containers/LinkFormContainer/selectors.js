@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { selectRouteTopic } from '../Navigation/selectors';
 
 /**
  * Direct selector to the linkFormContainer state domain
@@ -16,7 +17,8 @@ const selectLinkFormContainerDomain = () => state => state.get('linkFormContaine
 
 const selectLinkFormContainer = () => createSelector(
   selectLinkFormContainerDomain(),
-  (substate) => substate.toJS()
+  selectRouteTopic(),
+  (substate, activeTopic) => ({ ...substate.toJS(), topicName: activeTopic }),
 );
 
 export default selectLinkFormContainer;

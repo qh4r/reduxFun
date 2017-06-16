@@ -33,9 +33,10 @@ function* pickDefaultTopic() {
   // select zwraca aktualny state , tutaj trza by zrobic conajmniej toJS
   const state = yield select(selectNavigation());
   console.log('YIELDED STATE', state);
-  if (/^\/topics\/.*/.test(state.routerLocation) && !state.activeTopic) {
-    console.log('REDIRECTTTTT', /^\/topics\/.*/.test(state.routerLocation));
-    yield put(push(state.routerLocation.replace(/(\/topics\/)([^\/]+)(.*)/, (x, ...parts) => `${parts[0]}${state.topics[0].name}${parts[2]}`)));
+  const matchNameRegex = /(\/topics\/)([^\/]+)(.*)/;
+  if (/^\/topics\/.*/.test(state.routerLocation) && !state.topics.some(x => x.name === (matchNameRegex.exec(state.routerLocation) || [])[2])) {
+    // console.log('REDIRECTTTTT', /^\/topics\/.*/.test(state.routerLocation), state, state.topics.some(x => x === (matchNameRegex.exec(state.routerLocation) || [])[2]));
+    yield put(push(state.routerLocation.replace(matchNameRegex, (x, ...parts) => `${parts[0]}${state.topics[0].name}${parts[2]}`)));
   }
 }
 
