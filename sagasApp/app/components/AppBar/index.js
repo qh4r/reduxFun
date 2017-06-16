@@ -5,23 +5,20 @@
  */
 
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router';
 
 import styles from './styles.css';
+import IconButton from '../IconButton/index';
 
 function AppBar({ toggleMenu, email }) {
   return (
     <div className={styles.appBar}>
-      <div
-        className={styles.iconButton}
+      <IconButton
+        iconClass={styles.icon}
+        buttonClass={styles.iconButton}
         onClick={() => toggleMenu()}
-      >
-        <FontAwesome
-          className={styles.icon}
-          name="bars"
-        />
-      </div>
+        icon="bars"
+      />
       <div className={styles.heading}>
         Testy Testy
       </div>
@@ -35,10 +32,10 @@ function AppBar({ toggleMenu, email }) {
 AppBar.propTypes = {
   toggleMenu: React.PropTypes.func.isRequired,
   email: React.PropTypes.string.isRequired,
-}
+};
 
 AppBar.defaultProps = {
   email: '',
-}
+};
 
 export default AppBar;

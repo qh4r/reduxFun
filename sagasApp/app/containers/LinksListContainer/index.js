@@ -8,14 +8,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import selectLinksListContainer from './selectors';
 import LinksList from '../../components/LinksList/index';
-import { requestLinks } from './actions';
+import { requestLinks, goToAddLink } from './actions';
 
 export class LinksListContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
     requestLinks: React.PropTypes.func.isRequired,
     topicName: React.PropTypes.string.isRequired,
-    children: React.PropTypes.element,
+    goToAddLink: React.PropTypes.func.isRequired,
   }
 
   componentWillMount() {
@@ -32,7 +32,6 @@ export class LinksListContainer extends React.Component { // eslint-disable-line
     return (
       <div>
         <LinksList {...this.props} />
-        {this.props.children}
       </div>
     );
   }
@@ -46,4 +45,4 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = selectLinksListContainer();
 
-export default connect(mapStateToProps, { requestLinks })(LinksListContainer);
+export default connect(mapStateToProps, { requestLinks, goToAddLink })(LinksListContainer);
