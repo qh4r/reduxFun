@@ -38,4 +38,8 @@ NavigationComponent.propTypes = {
   email: React.PropTypes.string.isRequired,
 };
 
+NavigationComponent.defaultProps = {
+  email: '',
+};
+
 export default NavigationComponent;

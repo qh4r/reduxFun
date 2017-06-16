@@ -36,22 +36,6 @@
   @apply --header-style;
 }
 
-.input {
-  padding: 5px;
-  border: 0 solid rgba(0, 0, 0, 0.2);
-  border-bottom-width: 1px;
-  width: 100%;
-  font-size: 18px;
-
-  &.emailError {
-    border-color: var(--error-color);
-  }
-}
-
-.errorMsg {
-  color: var(--error-color)
-}
-
 .actionContainer {
   display: flex;
   justify-content: flex-end;
@@ -69,4 +53,8 @@
     background-color: rgba(0, 0, 0, 0.1);
     font-weight: 700;
   }
+}
+
+.input {
+  margin: 10px 0;
 }

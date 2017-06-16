@@ -9,6 +9,7 @@ import React from 'react';
 import styles from './styles.css';
 import emailValidator from 'email-validator';
 import classNames from 'classnames';
+import TextInput from '../TextInput/index';
 
 class LoginComponent extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -41,20 +42,14 @@ class LoginComponent extends React.Component { // eslint-disable-line react/pref
         <div className={styles.header}>
           Use email to login
         </div>
-        <input
-          type="text"
-          className={classNames(styles.input, { [styles.emailError]: this.state.emailError })}
+        <TextInput
+          errorText={this.state.emailError}
           placeholder="email"
           ref={(loginInput) => {
             this.loginInput = loginInput;
           }}
-          onChange={() => this.setState({
-            emailError: '',
-          })}
+          onChange={() => this.setState({ emailError: '' })}
         />
-        {this.state.emailError && <div className={styles.errorMsg}>
-          {this.state.emailError}
-        </div>}
         <div className={classNames(styles.actionContainer)}>
           <div className={styles.button} onClick={() => this.props.cancelLogin()}>
             cancel

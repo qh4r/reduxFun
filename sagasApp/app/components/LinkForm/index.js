@@ -7,6 +7,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import styles from './styles.css';
+import TextInput from '../TextInput/index';
 
 class LinkForm extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -24,31 +25,23 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
           <div className={styles.header}>
             Add new Link if you wish
           </div>
-          <input
-            type="text"
-            className={classNames(styles.input, { [styles.urlError]: this.state.urlError })}
+          <TextInput
+            className={styles.input}
+            errorText="test"
             placeholder="URL"
             ref={(emailInput) => {
-              this.emailInput = emailInput;
+              this.urlInput = emailInput;
             }}
-            onChange={() => this.setState({
-              urlError: '',
-            })}
           />
-          {this.state.urlError && <div className={styles.errorMsg}>
-            {this.state.urlError}
-          </div>}
-          <input
-            type="text"
-            className={classNames(styles.input, { [styles.descriptionError]: this.state.descriptionError })}
+          <TextInput
+            className={styles.input}
+            errorText=""
             placeholder="Description"
-            ref={(urlInput) => {
-              this.urlInput = urlInput;
+            ref={(emailInput) => {
+              this.descriptionInput = emailInput;
             }}
-            onChange={() => this.setState({
-              descriptionError: '',
-            })}
           />
+
           <div className={classNames(styles.actionContainer)}>
             <div className={styles.button} onClick={() => this.props.cancelLogin()}>
               cancel
