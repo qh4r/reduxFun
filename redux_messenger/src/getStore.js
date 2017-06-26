@@ -10,6 +10,7 @@ import { fromJS } from 'immutable';
 import { createLogger } from 'redux-logger';
 import { createSocketMiddleware } from './socketMiddleware';
 import { RECEIVE_MESSAGE } from './actions/index';
+import { getPreloadedState } from './getPreloadedState';
 
 const socketConfigurationOut = {
   UPDATE_STATUS: (data) => ({
@@ -47,7 +48,8 @@ const currentUser = users[0];
 
 const reducer = state => state;
 
-const defaultState = fromJS(getDefaultState(currentUser));
+// const defaultState = fromJS(getDefaultState(currentUser));
+const defaultState = getPreloadedState();
 
 console.log(defaultState)
 

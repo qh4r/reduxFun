@@ -15,6 +15,7 @@ import {
   users,
 } from './db/User';
 import socketIO  from 'socket.io';
+import { handleRender } from './servarRenderMiddleware';
 
 let app = express();
 const server = http.createServer(app);
@@ -115,7 +116,9 @@ app.use('/input/submit/:userID/:channelID/:messageID/:input', ({ params: { userI
   res.status(300).send();
 });
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use('/', handleRender(() => getDefaultState(currentUser)))
+
 app.use(express.static('public/css'));
 
 const port = 9000;
