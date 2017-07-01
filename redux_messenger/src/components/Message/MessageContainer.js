@@ -1,15 +1,20 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React from 'react'
+
+import { connect } from 'react-redux'
+
 import {
-  Message
+  Message,
 } from './Message';
 
-const mapStateToProps = (state, {message}) => {
+import { userSelector } from './../../selectors'
+
+const mapStateToProps = (state, { message }) => {
+  const owner = userSelector(message.get(`owner`))(state);
   return {
-    text: message.get('content').get('text'),
+    text: message.get(`content`).get(`text`),
     owner: {
-      name: message.get('owner')
-    }
+      name: owner.get(`fetchStatus`).includes(`FETCHED`) ? owner.get(`name`) : `[...]`,
+    },
   }
 };
 
@@ -17,5 +22,5 @@ const mapDispatchToProps = (dispatch) => ({});
 
 export const MessageContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Message);
