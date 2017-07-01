@@ -11,6 +11,11 @@ import { createLogger } from 'redux-logger';
 import { createSocketMiddleware } from './socketMiddleware';
 import { RECEIVE_MESSAGE } from './actions/index';
 import { getPreloadedState } from './getPreloadedState';
+import createSagaMiddleware from 'redux-saga';
+import thunk from 'redux-thunk';
+import { currentUserStatusSaga } from './sagas/currentUserStatusSaga';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const socketConfigurationOut = {
   UPDATE_STATUS: (data) => ({
@@ -22,8 +27,8 @@ const socketConfigurationOut = {
 const socketConfigurationIn = {
   NEW_MESSAGE: (message) => ({
     type: RECEIVE_MESSAGE,
-    message
-  })
+    message,
+  }),
 };
 
 const io = window.io;
@@ -36,9 +41,11 @@ const loggerMiddleware = createLogger({
 
 const enchancer = compose(
   applyMiddleware(
+    sagaMiddleware,
+    thunk,
     socketMiddleware,
-    loggerMiddleware
-  )
+    loggerMiddleware,
+  ),
 )
 
 initializeDB();
@@ -65,3 +72,5 @@ Object.keys(socketConfigurationIn).forEach(key => {
 });
 
 export const getStore = () => store;
+
+sagaMiddleware.run(currentUserStatusSaga)
